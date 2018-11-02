@@ -104,6 +104,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
     // the onDraw data
     private final Path renderPath = new Path();
     private final Path sparkPath = new Path();
+    private final Path fillPath = new Path();
     private final Path baseLinePath = new Path();
     private final Path scrubLinePath = new Path();
 
@@ -245,6 +246,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
 
         // make our main graph path
         sparkPath.reset();
+        fillPath.reset();
         for (int i = 0; i < adapterCount; i++) {
             final float x = scaleHelper.getX(adapter.getX(i));
             final float y = scaleHelper.getY(adapter.getY(i));
@@ -265,13 +267,14 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
         // if we're filling the graph in, close the path's circuit
         final Float fillEdge = getFillEdge();
         if (fillEdge != null) {
+            fillPath.addPath(sparkPath);
             final float lastX = scaleHelper.getX(adapter.getCount() - 1);
             // line up or down to the fill edge
-            sparkPath.lineTo(lastX, fillEdge);
+            fillPath.lineTo(lastX, fillEdge);
             // line straight left to far edge of the view
-            sparkPath.lineTo(getPaddingStart(), fillEdge);
+            fillPath.lineTo(getPaddingStart(), fillEdge);
             // closes line back on the first point
-            sparkPath.close();
+            fillPath.close();
         }
 
         // make our base line path
@@ -399,7 +402,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
         canvas.drawPath(baseLinePath, baseLinePaint);
 
         if(fillType != FillType.NONE){
-            canvas.drawPath(renderPath, sparkFillPaint);
+            canvas.drawPath(fillPath, sparkFillPaint);
         }
 
         canvas.drawPath(renderPath, sparkLinePaint);
@@ -777,6 +780,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
         scaleHelper = null;
         renderPath.reset();
         sparkPath.reset();
+        fillPath.reset();
         baseLinePath.reset();
         invalidate();
     }

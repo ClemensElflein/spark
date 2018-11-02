@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         sparkView = findViewById(R.id.sparkview);
 
+        sparkView.setFillType(SparkView.FillType.DOWN);
+
         adapter = new RandomizedAdapter();
         sparkView.setAdapter(adapter);
         sparkView.setScrubListener(new SparkView.OnScrubListener() {
