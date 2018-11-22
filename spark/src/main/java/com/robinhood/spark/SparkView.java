@@ -268,11 +268,19 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
         final Float fillEdge = getFillEdge();
         if (fillEdge != null) {
             fillPath.addPath(sparkPath);
-            final float lastX = scaleHelper.getX(adapter.getCount() - 1);
+            final float firstX = scaleHelper.getX(adapter.getX(0));
+            final float firstY = scaleHelper.getY(adapter.getY(0));
+            final float lastX = scaleHelper.getX(adapter.getX(adapter.getCount() - 1));
+            final float lastY = scaleHelper.getY(adapter.getY(adapter.getCount() - 1));
+            // Line to the right
+            fillPath.lineTo(lastX, lastY);
+            fillPath.lineTo(lastX + 2*cornerRadius, lastY);
             // line up or down to the fill edge
-            fillPath.lineTo(lastX, fillEdge);
+            fillPath.lineTo(lastX + 2*cornerRadius, fillEdge);
             // line straight left to far edge of the view
-            fillPath.lineTo(getPaddingStart(), fillEdge);
+            fillPath.lineTo(firstX-2*cornerRadius, fillEdge);
+            fillPath.lineTo(firstX-2*cornerRadius, firstY);
+            fillPath.lineTo(firstX, firstY);
             // closes line back on the first point
             fillPath.close();
         }
@@ -299,7 +307,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
             case FillType.UP:
                 return (float) getPaddingTop();
             case FillType.DOWN:
-                return (float) getHeight() - getPaddingBottom();
+                return (float) getHeight() + 2*cornerRadius;
             case FillType.TOWARD_ZERO:
                 float zero = scaleHelper.getY(0F);
                 float bottom = (float) getHeight() - getPaddingBottom();
@@ -402,7 +410,10 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
         canvas.drawPath(baseLinePath, baseLinePaint);
 
         if(fillType != FillType.NONE){
+            canvas.save();
+            //canvas.clipRect(0,0,getWidth(), getHeight());
             canvas.drawPath(fillPath, sparkFillPaint);
+            canvas.restore();
         }
 
         canvas.drawPath(renderPath, sparkLinePaint);
