@@ -18,7 +18,16 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:spark_cornerRadius="5dp"
+        app:spark_fill="false"
+        app:spark_scrubTextSize="20sp"
+        app:spark_axisTextSize="12sp"
+        app:spark_fillType="none"
         app:spark_lineColor="@color/colorAccent"
+        app:spark_scrubTextPadding="8dp"
+        app:spark_axisTextSpacing="32dp"
+        app:spark_axisTextPadding="8dp"
+        app:spark_axisLineColor="#CCC"
+        app:spark_axisLineWidth="1px"
         app:spark_fillColor="@color/colorAccentTransparent"
         app:spark_scrubEnabled="true"/>
 
@@ -30,6 +39,17 @@
         android:gravity="center"
         android:textAppearance="?android:textAppearanceLarge"
         android:text="@string/scrub_empty"/>
+
+    <TextView
+        android:text="Spacing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <SeekBar
+        android:min="0"
+        android:max="200"
+        android:id="@+id/seek_text_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <CheckBox
         android:id="@+id/fillCheckBox"

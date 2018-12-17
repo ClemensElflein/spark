@@ -26,5 +26,16 @@
         <attr name="spark_scrubEnabled" format="boolean|reference" />
 
         <attr name="spark_animateChanges" format="boolean|reference" />
+        <attr name="spark_scrubTextColor" format="color|reference" />
+        <attr name="spark_scrubTextPadding" format="dimension" />
+        <attr name="spark_scrubTextSize" format="dimension" />
+
+        <attr name="spark_axisTextColor" format="color|reference" />
+        <attr name="spark_axisTextPadding" format="dimension" />
+        <attr name="spark_axisTextSpacing" format="dimension" />
+        <attr name="spark_axisTextSize" format="dimension" />
+        <attr name="spark_axisLineWidth" format="dimension" />
+        <attr name="spark_axisLineColor" format="reference|color" />
+
     </declare-styleable>
 </resources>

@@ -144,4 +144,12 @@ public abstract class SparkAdapter {
     public final void unregisterDataSetObserver(DataSetObserver observer) {
         observable.unregisterObserver(observer);
     }
+
+    public String formatYForScrub(float y) {
+        return Float.toString(y);
+    }
+
+    public String formatYForAxis(float y) {
+        return Float.toString(y);
+    }
 }

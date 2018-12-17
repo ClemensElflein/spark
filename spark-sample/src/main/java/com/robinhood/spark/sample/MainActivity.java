@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         sparkView = findViewById(R.id.sparkview);
 
-        sparkView.setFillType(SparkView.FillType.DOWN);
 
         adapter = new RandomizedAdapter();
         sparkView.setAdapter(adapter);
@@ -82,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
         });
         
         scrubInfoTextView = findViewById(R.id.scrub_info_textview);
+
+        ((SeekBar)findViewById(R.id.seek_text_spacing)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                sparkView.setAxisTextSpacing((float)i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         // set select
         Spinner animationSpinner = findViewById(R.id.animation_spinner);
@@ -131,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         public RandomizedAdapter() {
             random = new Random();
-            yData = new float[50];
+            yData = new float[51];
             randomize();
         }
 
