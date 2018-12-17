@@ -476,7 +476,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
             String s = getScrubText(scrubIndex);
             scrubTextPaint.getTextBounds(s, 0, s.length(), textBounds);
 
-            canvas.drawLine(currentScrubX, getPaddingTop(), currentScrubX, getHeight() - getPaddingBottom(), scrubLinePaint);
+            canvas.drawLine(currentScrubX, 0, currentScrubX, getHeight() - getPaddingBottom(), scrubLinePaint);
 
             // Check if we have enough space to draw it right of the line
             if (currentScrubX + scrubTextPadding + textBounds.width() >= getWidth() - scrubTextPadding) {

@@ -17,6 +17,7 @@
         android:id="@+id/sparkview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:paddingTop="32dp"
         app:spark_cornerRadius="5dp"
         app:spark_fill="false"
         app:spark_scrubTextSize="20sp"
