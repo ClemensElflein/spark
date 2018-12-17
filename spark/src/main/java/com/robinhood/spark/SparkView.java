@@ -508,14 +508,14 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
                     String text = adapter.formatYForAxis(data);
                     axisTextPaint.getTextBounds(text, 0, text.length(), textBounds);
 
-                    canvas.drawText(text, getPaddingStart(), currentY + textBounds.height() / 2f, axisTextPaint);
+                    canvas.drawText(text, getPaddingStart()+axisTextPadding, currentY + textBounds.height() / 2f, axisTextPaint);
 
                     maxTextWidth = Math.max(maxTextWidth, textBounds.width());
                 }
 
                 for (int label = 0; label < labelCount; label++) {
                     float currentY = (label - labelCount / 2) * (labelHeight + labelSpacing) + centerY;
-                    canvas.drawLine(getPaddingStart() + axisTextPadding + maxTextWidth, currentY, getWidth(), currentY, axisLinePaint);
+                    canvas.drawLine(getPaddingStart() + axisTextPadding*2 + maxTextWidth, currentY, getWidth(), currentY, axisLinePaint);
                 }
             }
         }
