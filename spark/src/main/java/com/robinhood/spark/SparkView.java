@@ -492,7 +492,7 @@ public class SparkView extends View implements ScrubGestureDetector.ScrubListene
             RectF dataBounds = adapter.getDataBounds();
             float labelHeight = axisTextPaint.getTextSize();
             float labelSpacing = axisTextSpacing;
-            int labelCount = (int) (getHeight() / (labelHeight + labelSpacing)) + 1;
+            int labelCount = (int) (getHeight() / (labelHeight + labelSpacing));
             // Y values for the labels. We want one at the center
             float minY = getPaddingTop();
             float maxY = getHeight() - getPaddingBottom();
